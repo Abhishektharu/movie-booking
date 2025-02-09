@@ -1,0 +1,7 @@
+User Authentication (Sign Up, Login, JWT-based sessions)
+Movie Listings (Show available movies, posters, details)
+Seat Selection (Interactive seat booking system)
+Booking System (User can select seats, confirm and pay)
+Booking History (Users can view past bookings)
+Admin Dashboard (For adding movies, managing bookings)
+Responsive UI (Optimized for both desktop & mobile)
