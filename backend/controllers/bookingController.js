@@ -20,9 +20,12 @@ export const bookTicket = async (req, res) => {
 
 export const getUserBookings = async (req,res) => {
     try {
-        const query = 'SELECT * FROM `bookings` WHERE `name` = ?';
-        const [bookings] = await db.execute(query, [req.params.userId])
+        const query = 'SELECT * FROM `bookings` WHERE `user_id` = ?';
+        const [bookings] = await db.execute(query, [req.params.userId]);
+        return res.json(bookings);
     } catch (error) {
+        console.log(error);
         
+        res.status(500).json({message: "Failed to fetch booking. "}, error);
     }
 }
