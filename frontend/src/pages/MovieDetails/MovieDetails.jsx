@@ -1,24 +1,29 @@
 // src/pages/MovieDetailsPage.js
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
+import useShowTimeByMovId from '../../hooks/useShowTimeByMovId';
+import useMoviesById from '../../hooks/useMoviesById';
 
 function MovieDetails() {
   const { id } = useParams();
-  const [movie, setMovie] = useState(null);
-  const [showtimes, setShowtimes] = useState([]);
+  // const [movie, setMovie] = useState(null);
+  // const [showtimes, setShowtimes] = useState([]);
 
-  useEffect(() => {
-    // Fetch movie details
-    axios.get(`http://localhost:5000/api/movies/${id}`)
-      .then(response => setMovie(response.data))
-      .catch(error => console.error('Error fetching movie details:', error));
+  // useEffect(() => {
+  //   // Fetch movie details
+  //   axios.get(`http://localhost:5000/api/movies/${id}`)
+  //     .then(response => setMovie(response.data))
+  //     .catch(error => console.error('Error fetching movie details:', error));
 
-    // Optionally, fetch showtimes for this movie (assuming you have an endpoint)
-    axios.get(`http://localhost:5000/api/showtimes?movie_id=${id}`)
-      .then(response => setShowtimes(response.data))
-      .catch(error => console.error('Error fetching showtimes:', error));
-  }, [id]);
+  //   // Optionally, fetch showtimes for this movie (assuming you have an endpoint)
+  //   axios.get(`http://localhost:5000/api/showtimes?movie_id=${id}`)
+  //     .then(response => setShowtimes(response.data))
+  //     .catch(error => console.error('Error fetching showtimes:', error));
+  // }, [id]);
+
+  const {movie} = useMoviesById(id);
+  const {showtimes} = useShowTimeByMovId(id);
 
   if (!movie) return <p>Loading...</p>;
 
