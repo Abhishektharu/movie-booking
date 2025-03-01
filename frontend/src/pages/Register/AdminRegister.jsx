@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-const Register = () => {
+const AdminRegister = () => {
   const {
     register,
     handleSubmit,
@@ -11,7 +11,7 @@ const Register = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const res = axios.post("http://localhost:5000/api/auth/register", data);
+    const res = axios.post("http://localhost:5000/api/auth/admin/register", data);
 
     console.log(res);
   };
@@ -24,7 +24,12 @@ const Register = () => {
       {/* register your input into the hook by invoking the "register" function */}
       <div className="form-control">
         <label>Name</label>
-        <input type="text" name="name" {...register("name")} />
+        <input
+          type="text"
+          name="name"
+          {...register("name")}
+          placeholder="Enter your name"
+        />
       </div>
 
       <div className="form-control">
@@ -56,17 +61,9 @@ const Register = () => {
       {/* errors will return when field validation fails  */}
       {errors.password && <span>Password must be atleast 5 characters.</span>}
 
-
-      <div className="form-control">
-        <label>user</label>
-      <input {...register("radio_role")} type="radio" value="user" />
-      <label> admin</label>
-
-      <input {...register("radio_role")} type="radio" value="admin" />
-      </div>
-        <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
   );
 };
 
-export default Register;
+export default AdminRegister;

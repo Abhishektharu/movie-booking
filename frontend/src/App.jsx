@@ -4,8 +4,10 @@ import HomePage from './pages/Home/HomePage'
 import Profile from './pages/Profile/Profile'
 import MovieDetails from './pages/MovieDetails/MovieDetails'
 import SeatSelection from './pages/SeatSelection/SeatSelection'
-import Register from './pages/Login/Register'
-import Login from './pages/Login/Login'
+import AdminLogin from './pages/Login/AdminLogin'
+import AdminRegister from './pages/Register/AdminRegister'
+import UserRegister from './pages/Register/UserRegister'
+import UserLogin from './pages/Login/UserLogin'
 
 
 function App() {
@@ -17,8 +19,13 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/movies/:id' element ={<MovieDetails /> }/>
         <Route path='/seat-selection/:showtimeId' element={<SeatSelection />}/>
-        <Route path='/register' element = {<Register />} />
-        <Route path='/login' element = {<Login />} />
+
+
+        <Route path='/user/register' element = {<UserRegister />} />
+        <Route path='/user/login' element = {<UserLogin />} />
+        
+        <Route path='/admin/login' element = {<AdminLogin />} />
+        <Route path='/admin/register' element = {<AdminRegister />} />
       </Routes>
     </Router>
     </>

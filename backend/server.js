@@ -6,6 +6,7 @@ import movieRoutes from "./routes/movieRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import seatRoutes from "./routes/seatsRoutes.js";
 import showtimeRoutes from "./routes/showtimeRoutes.js";
+import authRoutesAdmin from "./routes/authRoutesAdmin.js";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
+app.use("/api/auth/admin", authRoutesAdmin);
 app.use("/api/movies", movieRoutes);
 app.use("/api/bookings", bookingRoutes);
 
