@@ -1,4 +1,4 @@
-import express from "express";
+import express, { request } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
@@ -11,7 +11,14 @@ import authRoutesAdmin from "./routes/authRoutesAdmin.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+//allowed requests
+const allowedSites = {
+    origin: ["http://localhost:5173"],
+    request: "GET, POST",
+}
+
+app.use(cors(allowedSites));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);

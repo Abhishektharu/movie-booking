@@ -35,7 +35,7 @@ export const loginAdmin = async (req, res) => {
         if (!isMatch) return res.status(401).json({ message: "Invalid email or password" });
 
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1d" });
-        return res.json({ token, user: { id: user.id, name: user.name, email: user.email } });
+        return res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
     } catch (error) {
         console.log(error.message);
         

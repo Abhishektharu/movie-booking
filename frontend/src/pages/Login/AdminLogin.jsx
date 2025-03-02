@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const AdminLogin = () => {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -20,7 +21,7 @@ const AdminLogin = () => {
         
         
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/admin/login", formData);
+            const res = await axios.post(`${API_BASE_URL}/api/auth/admin/login`, formData);
 
             console.log("Login Successful:", res.data);
             // Handle login success (e.g., redirect or store token in state/context)
