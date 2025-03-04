@@ -8,3 +8,9 @@ Responsive UI (Optimized for both desktop & mobile)
 
 Vite is an ES module-based build tool, and import.meta.env allows it to statically analyze and replace environment variables at build time.
 Unlike process.env, which is runtime-based, Vite replaces import.meta.env.VITE_YOUR_VAR with its actual value during bundling
+
+
+
+      // Store user data (if needed)
+      localStorage.setItem("user", JSON.stringify(res.data.user));  
+    returns [object, object];
