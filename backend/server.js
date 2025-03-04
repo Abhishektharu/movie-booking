@@ -7,6 +7,7 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 import seatRoutes from "./routes/seatsRoutes.js";
 import showtimeRoutes from "./routes/showtimeRoutes.js";
 import authRoutesAdmin from "./routes/authRoutesAdmin.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -16,17 +17,26 @@ const app = express();
 const allowedSites = {
     origin: ["http://localhost:5173"],
     request: "GET, POST",
+    credentials : true
 }
 
 app.use(cors(allowedSites));
 app.use(express.json());
 
+app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/auth/admin", authRoutesAdmin);
 app.use("/api/movies", movieRoutes);
 app.use("/api/bookings", bookingRoutes);
 
+
 app.use("/api/showtimes", showtimeRoutes);
 app.use("/api/seats", seatRoutes);
+
+app.get("/check-cookie", (req, res) => {
+    console.log("Cookies:", req.cookies); // Logs all cookies
+    res.json({ cookies: req.cookies });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
