@@ -24,7 +24,14 @@ const AdminLogin = () => {
             const res = await axios.post(`${API_BASE_URL}/api/auth/admin/login`, formData);
 
             console.log("Login Successful:", res.data);
+
             // Handle login success (e.g., redirect or store token in state/context)
+            if(res !== null ){
+
+                localStorage.setItem("access-admin", res.data.token);
+                localStorage.setItem("admin", JSON.stringify(res.data.user));
+            }
+
         } catch (error) {
             console.error("Login Failed:", error.response?.data || error.message);
         }

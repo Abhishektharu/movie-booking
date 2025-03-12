@@ -30,10 +30,16 @@ export const loginAdmin = async (req, res) => {
         }
 
         const user = users[0];
+        // console.log(user.role);
+        
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) return res.status(401).json({ message: "Invalid email or password" });
+        if(user.role !== "admin"){
+            return res.status(403).json({message: "Cannot login as user."});
+        }
 
+        
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1d" });
         return res.json({ token, user: { id: user.id, name: user.name, email: user.email, role: user.role } });
     } catch (error) {
@@ -42,3 +48,7 @@ export const loginAdmin = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 };
+//todo 
+export const logoutAdmin = async (req, res) => {
+    return ;
+}

@@ -8,6 +8,8 @@ import AdminLogin from './pages/Login/AdminLogin'
 import AdminRegister from './pages/Register/AdminRegister'
 import UserRegister from './pages/Register/UserRegister'
 import UserLogin from './pages/Login/UserLogin'
+import AddMovie from './pages/AddMovie/AddMovie'
+import Layout from './components/Layout/Layout'
 
 
 function App() {
@@ -15,7 +17,8 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path='/' element={<HomePage/>}/>
+        <Route path='/' element={<Layout/>}>
+        <Route index element = {<HomePage />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/movies/:id' element ={<MovieDetails /> }/>
         <Route path='/seat-selection/:showtimeId' element={<SeatSelection />}/>
@@ -26,6 +29,11 @@ function App() {
         
         <Route path='/admin/login' element = {<AdminLogin />} />
         <Route path='/admin/register' element = {<AdminRegister />} />
+
+        <Route path='/addMovie' element = {<AddMovie />} />
+        <Route path='/layout' element = {<Layout />}/>
+        </Route>
+
       </Routes>
     </Router>
     </>

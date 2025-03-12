@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const UserLogin = () => {
+  
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,15 +22,16 @@ const UserLogin = () => {
     setSuccess(""); // Clear previous success messages
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData, {
-        withCredentials: true //allow cookie to store 
-      });
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, formData);
 
       setSuccess("Login successful");
-      console.log("User Logged In:", res.data);
+      console.log("User Logged In:", res.data.token);
 
       // Store user data (if needed)
-      localStorage.setItem("user", JSON.stringify(res.data.user));  
+      if(res !== null || res.length !== undefined){
+        localStorage.setItem("access-user", JSON.stringify(res.data.token));
+        localStorage.setItem("user", JSON.stringify(res.data.user));  
+      }
 
       // Example: Redirect user to dashboard (if using React Router)
       // navigate("/dashboard");

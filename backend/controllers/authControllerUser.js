@@ -30,17 +30,22 @@ export const loginUser = async (req, res) => {
         }
 
         const user = users[0];
+        if(user.role !== "user"){
+            return res.status(403).json({message: "Cannot login as admin"});
+        }
+        
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) return res.status(401).json({ message: "Invalid email or password" });
 
+
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-        //set http-only cookie ;
-        res.cookie("access-token", token, {
-            httpOnly: true,
-            sameSite: "strict", //prevent csrf attacks
-        });
+        // //set http-only cookie ;
+        // res.cookie("access-token", token, {
+        //     httpOnly: true,
+        //     sameSite: "strict", //prevent csrf attacks
+        // });
         
 
         return res.status(200).json({ token, user: { id: user.id, name: user.name, email: user.email } });
@@ -51,6 +56,7 @@ export const loginUser = async (req, res) => {
     }
 };
 
+//todo
 export const logoutUser = async(req, res)=>{
     return ;
 }
