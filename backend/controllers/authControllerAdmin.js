@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 export const registerAdmin = async (req, res) => {
     try {
-        const { name, email, password , radio_role} = req.body;
+        const { name, email, password } = req.body;
 
         const [existingUser] = await db.execute("SELECT * FROM users WHERE email = ?", [email]);
         if (existingUser.length > 0) {
