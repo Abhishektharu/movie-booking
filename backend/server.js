@@ -8,7 +8,10 @@ import seatRoutes from "./routes/seatsRoutes.js";
 import showtimeRoutes from "./routes/showtimeRoutes.js";
 import authRoutesAdmin from "./routes/authRoutesAdmin.js";
 import cookieParser from "cookie-parser";
-import {verifyToken} from "./middleware/authMiddleware.js"
+import {verifyToken} from "./middleware/authMiddleware.js";
+
+import path from "path";
+
 dotenv.config();
 
 const app = express();
@@ -23,10 +26,13 @@ const allowedSites = {
 app.use(cors(allowedSites));
 app.use(express.json());
 
+// Serve uploaded images as static files
+app.use("../uploads", express.static(path.join("uploads")));
+
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/auth/admin", authRoutesAdmin);
-app.use("/api/movies",verifyToken, movieRoutes);
+app.use("/api/movies", movieRoutes);
 app.use("/api/bookings", bookingRoutes);
 
 

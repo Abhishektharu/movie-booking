@@ -36,17 +36,48 @@ export const getMovieById = async (req, res) => {
   }
 };
 
-//to do add movie 
-export const addMovie = async (req, res) => {
-    try {
-        const { title, description, genre, duration, release_date, image_url } = req.body;
-        await db.execute(
-            "INSERT INTO movies (title, description, genre, duration, release_date, image_url) VALUES (?, ?, ?, ?, ?, ?)",
-            [title, description, genre, duration, release_date, image_url]
-        );
-        res.status(201).json({ message: "Movie added successfully" });
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-};
+// //to do add movie 
+// export const addMovie = async (req, res) => {
+//     try {
+//        const { file } = req.body;
+//        //upload   = path =>
+//         const { title, description, genre, duration, release_date, image_url } = req.body;
+//         console.log(image_url);
+//         console.log("this");
+        
+//         await db.execute(
+//             "INSERT INTO movies (title, description, genre, duration, release_date, image_url) VALUES (?, ?, ?, ?, ?, ?)",
+//             [title, description, genre, duration, release_date, image_url]
+//         );
+//         res.status(201).json({ message: "Movie added successfully" });
+//     } catch (error) {
+//       console.log(error);
+      
+//         res.status(500).json({ error: error.message });
+//     }
+// };
 
+export const addMovie = async (req, res) => {
+  try {
+    const { title, description, genre, duration, release_date } = req.body;
+    
+    if (!title || !description || !genre || !duration || !release_date) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Check if an image was uploaded
+    const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+
+    console.log("Uploaded Image URL:", image_url);
+
+    await db.execute(
+      "INSERT INTO movies (title, description, genre, duration, release_date, image_url) VALUES (?, ?, ?, ?, ?, ?)",
+      [title, description, genre, duration, release_date, image_url]
+    );
+
+    res.status(201).json({ message: "Movie added successfully", image_url });
+  } catch (error) {
+    console.error("Error adding movie:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
