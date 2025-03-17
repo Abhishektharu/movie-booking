@@ -2,6 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import useShowTimeByMovId from "../../hooks/useShowTimeByMovId";
 import useMoviesById from "../../hooks/useMoviesById";
 import BookBtn from "../../components/Buttons/BookBtn";
+import {getImageUrl} from "../../utils/api.js"
 
 function MovieDetails() {
   const { id } = useParams();
@@ -20,7 +21,7 @@ function MovieDetails() {
     <div className="container mx-auto p-4">
       <div className="flex flex-col md:flex-row">
         <img
-          src={movie.image_url}
+          src={getImageUrl(movie.image_url)}
           alt={movie.title + " img"}
           className="w-full md:w-1/3 h-auto rounded"
         />

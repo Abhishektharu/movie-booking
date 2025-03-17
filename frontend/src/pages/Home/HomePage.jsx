@@ -5,6 +5,8 @@ import useMovies from "../../hooks/useMovies";
 const HomePage = () => {
   // The Home Page fetches and displays a list of movies.
   const {movies, loading} = useMovies();
+  // console.log(movies);
+  
     if(loading) return <p>Loading...</p>   
   return (
     <>

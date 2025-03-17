@@ -27,7 +27,7 @@ app.use(cors(allowedSites));
 app.use(express.json());
 
 // Serve uploaded images as static files
-app.use("../uploads", express.static(path.join("uploads")));
+app.use("/uploads", express.static(path.join("uploads")));
 
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
