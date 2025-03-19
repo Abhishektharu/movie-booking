@@ -1,19 +1,9 @@
-import HeaderComponent from "../Header"
-import Sidebar from "../Sidebar"
+import React from 'react'
 
 const AdminDashboard = () => {
-  
-
   return (
-    <>
-    <div className="flex">
-        <Sidebar/>
-        <HeaderComponent/>
-       
-    </div>
-    </>
-   
+    <div> this is AdminDashboard</div>
   )
 }
 
-export default AdminDashboard;
+export default AdminDashboard

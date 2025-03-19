@@ -1,21 +1,23 @@
 import { Outlet } from "react-router-dom";
+import Sidebar from "../Sidebar/Sidebar";
 import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
-
 
 const Layout = () => {
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col">
-      {/* Navbar */}
-      <Navbar />
+    <div className="flex h-screen">
+      {/* Sidebar */}
+      <Sidebar />
 
       {/* Main Content */}
-      <main className="flex-grow p-6">
-        <Outlet />
-      </main>
+      <div className="flex flex-col flex-grow bg-gray-100 text-gray-900">
+        {/* Navbar */}
+        <Navbar />
 
-      {/* Footer */}
-      <Footer />
+        {/* Page Content */}
+        <main className="flex-grow p-6">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };

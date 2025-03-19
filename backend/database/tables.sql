@@ -87,3 +87,11 @@ VALUES (1, 'A1', 'available'),
        SELECT @@global.time_zone, @@session.time_zone;
        SET GLOBAL time_zone = '+05:45'; -- Nepal Time (NPT)
 SET SESSION time_zone = '+05:45';
+
+CREATE TABLE screens (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    theater_id INT,
+    screen_number INT NOT NULL,
+    total_seats INT NOT NULL,
+    FOREIGN KEY (theater_id) REFERENCES theaters(id) ON DELETE CASCADE
+);

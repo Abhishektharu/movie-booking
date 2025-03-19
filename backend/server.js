@@ -7,6 +7,8 @@ import bookingRoutes from "./routes/bookingRoutes.js";
 import seatRoutes from "./routes/seatsRoutes.js";
 import showtimeRoutes from "./routes/showtimeRoutes.js";
 import authRoutesAdmin from "./routes/authRoutesAdmin.js";
+
+import theaterRoutes from "./routes/theaterRoutes.js";
 import cookieParser from "cookie-parser";
 import {verifyToken} from "./middleware/authMiddleware.js";
 
@@ -38,6 +40,8 @@ app.use("/api/bookings", bookingRoutes);
 
 app.use("/api/showtimes", showtimeRoutes);
 app.use("/api/seats", seatRoutes);
+
+app.use("/api/theaters",theaterRoutes);
 
 
 const PORT = process.env.PORT || 5000;
