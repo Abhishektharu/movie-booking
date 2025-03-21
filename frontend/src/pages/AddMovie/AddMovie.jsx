@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {getBackend} from "../../utils/api"
 
 const AddMovie = () => {
   const [movieData, setMovieData] = useState({
@@ -28,7 +29,7 @@ const AddMovie = () => {
     formData.append("image", image);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/movies/", formData, {
+      const res = await axios.post(getBackend("/api/movies/"), formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

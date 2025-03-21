@@ -1,12 +1,8 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { getBackend } from "../../utils/api";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-// Initialize toast notifications
-toast.configure();
 
 const AddTheater = () => {
   const navigate = useNavigate();
@@ -16,28 +12,28 @@ const AddTheater = () => {
     formState: { errors },
     reset,
   } = useForm();
-  
+
+  const [message, setMessage] = useState(null);
+  const [messageType, setMessageType] = useState(null); // "success" or "error"
+
   const onSubmit = async (data) => {
     try {
       const res = await axios.post(getBackend("/api/theaters/addTheater"), data);
-      console.log("Theater Added:", res.data);
+      console.log("Response:", res.data);
 
-      // Show success toast
-      toast.success("✅ Theater added successfully!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      // Show success message
+      setMessage(res.data.message);
+      setMessageType("success");
 
       reset(); // Clear form fields
       setTimeout(() => navigate("/admin/dashboard"), 2000);
     } catch (error) {
       console.error("Error adding theater:", error.response?.data || error.message);
 
-      // Show error toast
-      toast.error("❌ Failed to add theater!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      // Show error message
+      const errorMessage = error.response?.data?.message || "Failed to add theater!";
+      setMessage(errorMessage);
+      setMessageType("error");
     }
   };
 
@@ -45,6 +41,17 @@ const AddTheater = () => {
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-gray-900 to-gray-800 p-4">
       <div className="bg-gray-100 p-8 rounded-2xl shadow-xl w-full max-w-lg">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-6">Add Theater</h2>
+
+        {/* Display Backend Message */}
+        {message && (
+          <div
+            className={`text-center font-semibold mb-4 p-2 rounded-lg ${
+              messageType === "success" ? "bg-green-200 text-green-700" : "bg-red-200 text-red-700"
+            }`}
+          >
+            {message}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>

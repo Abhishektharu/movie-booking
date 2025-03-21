@@ -21,8 +21,10 @@ const useShowTimeByMovId = (id) => {
     };
     fetchShowTimes();
   }, [id]);
-
+  
+  // console.log(showtimes);
   return {showtimes}
+  
 };
 
 export default useShowTimeByMovId;

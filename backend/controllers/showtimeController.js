@@ -12,3 +12,21 @@ export const getShowtimesByMovie = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch showtimes' });
   }
 };
+export const addShowtime = async (req, res) => {
+  try {
+    const { movie_id, theater_id, show_date, show_time, price } = req.body;
+
+    if (!movie_id || !theater_id || !show_date || !show_time || !price) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    await db.execute(
+      "INSERT INTO showtimes (movie_id, theater_id, show_date, show_time, price) VALUES (?, ?, ?, ?, ?)",
+      [movie_id, theater_id, show_date, show_time, price]
+    );
+
+    res.status(201).json({ message: "Showtime added successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};

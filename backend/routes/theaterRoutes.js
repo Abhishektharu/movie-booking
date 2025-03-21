@@ -1,9 +1,10 @@
 import express from "express";
-import { addTheater } from "../controllers/theaterController.js";
+import { addTheater, getTheater } from "../controllers/theaterController.js";
 
 
 const router = express.Router();
 
-router.post("/addTheater", addTheater); // Protect route
+router.post("/addTheater", addTheater); // todo Protect route
+router.get("/", getTheater); // todo Protect route
 
 export default router;

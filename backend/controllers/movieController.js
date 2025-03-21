@@ -103,4 +103,26 @@ export const deleteMovie = async (req, res) => {
       console.error("Error deleting movie:", error);
       return res.status(500).json({ error: error.message });
   }};
+
+  export const updateMovie = async (req, res) => {
+    try {
+      const { movieId } = req.params;
+      const { title, description, genre, duration, release_date } = req.body;
   
+      // Check if the movie exists
+      const [existingMovie] = await db.execute("SELECT * FROM movies WHERE id = ?", [movieId]);
+      if (existingMovie.length === 0) {
+        return res.status(404).json({ message: "Movie not found" });
+      }
+  
+      // Update the movie
+      await db.execute(
+        "UPDATE movies SET title = ?, description = ?, genre = ?, duration = ?, release_date = ? WHERE id = ?",
+        [title, description, genre, duration, release_date, movieId]
+      );
+  
+      return res.status(200).json({ message: "Movie updated successfully" });
+    } catch (error) {
+      console.error("Error updating movie:", error);
+      return res.status(500).json({ error: error.message });
+    }};

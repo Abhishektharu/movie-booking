@@ -12,6 +12,7 @@ import AddMovie from './pages/AddMovie/AddMovie'
 import Layout from './components/Layout/Layout'
 import AdminDashboard from './Dashboard/AdminDashboard'
 import AddTheater from './pages/Theater/AddTheater'
+import AddShowtime from './pages/Show/AddShowtime'
 
 
 function App() {
@@ -37,11 +38,13 @@ function App() {
 
 
 
-        <Route path='/addMovie' element = {<AddMovie />} />
+        <Route path='/admin/movies/add' element = {<AddMovie />} />
         <Route path='/layout' element = {<Layout />}/>
 
         <Route path='/dashboard' element = {<AdminDashboard />} />
-        <Route path='/addTheater' element = {<AddTheater />} />
+        <Route path='/admin/add-theater' element = {<AddTheater />} />
+        <Route path='/admin/add-show' element = {<AddShowtime />} />
+
 
         </Route>
 
