@@ -20,7 +20,7 @@ const app = express();
 
 //allowed requests
 const allowedSites = {
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173","http://localhost:5174"],
     request: "GET, POST",
     credentials : true
 }

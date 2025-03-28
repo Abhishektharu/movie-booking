@@ -90,7 +90,7 @@ export const deleteMovie = async (req, res) => {
       const [existingMovie] = await db.execute("SELECT * FROM movies WHERE id = ?", [movieId]);
       if (existingMovie.length === 0) {
           return res.status(404).json({ message: "Movie not found" });
-      }
+      } 
 
       // Delete related showtimes (if needed)
       await db.execute("DELETE FROM showtimes WHERE movie_id = ?", [movieId]);
