@@ -114,11 +114,11 @@ function MovieDetails() {
                       <span className="text-gray-700">
                         {showDate(show.show_date)} at {show.show_time} - Rs {show.price}
                       </span>
-                      <BookBtn
+                      {/* <BookBtn
                         label="Book Now"
                         onClick={() => handleBookNow(show.id)}
                         className="ml-4"
-                      />
+                      /> */}
                     </li>
                   ))
                 ) : (

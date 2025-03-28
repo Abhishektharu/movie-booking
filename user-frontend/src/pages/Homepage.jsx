@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MovieList from "../components/List/MovieList";
+import Footer from "../components/Footer/Footer";
 
 const Homepage = () => {
   return (
@@ -67,6 +68,7 @@ const Homepage = () => {
       <div>
         <MovieList />
       </div>
+      <Footer />
     </div>
   );
 };
