@@ -70,9 +70,8 @@ const Footer = () => {
         <div className="mt-10 text-center border-t border-gray-700 pt-5 text-sm">
           <p>© All Rights Reserved By: MY Cinemas</p>
           <div className="flex justify-center space-x-4 mt-2">
-            <a href="#" className="hover:text-white">Map</a> |
-            <a href="#" className="hover:text-white">Terms & Conditions</a> |
-            <a href="#" className="hover:text-white">Privacy Policy</a>
+            <a href="#" className="hover:text-white"> Terms & Conditions </a>
+            <a href="#" className="hover:text-white"> Privacy Policy </a>
           </div>
         </div>
       </div>

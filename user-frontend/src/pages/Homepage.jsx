@@ -2,21 +2,37 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MovieList from "../components/List/MovieList";
 import Footer from "../components/Footer/Footer";
+import ModernCarousel from "../components/carousel/Carousel";
+import posterImage from "../assets/poster.jpeg";
+import posterImage2 from "../assets/poster2.png";
+import posterImage3 from "../assets/poster3.jpeg";
+
 
 const Homepage = () => {
+  const carouselSlides = [
+    {
+      image: posterImage,
+      title: "Now Showing",
+      subtitle: "Draupadi",
+    },
+    {
+      image: posterImage2,
+      title: "Coming Soon",
+      subtitle: "Another Great Movie",
+    },
+    {
+      image: posterImage3,
+      title: "Featured",
+      subtitle: "Must Watch",
+    },
+  ];
+
   return (
     <div className="bg-gray-900 text-white min-h-screen">
       {/* Navbar */}
       <header className="flex justify-between items-center p-5 bg-gray-800">
         <h1 className="text-2xl font-bold">Duplicate QFX Cinemas</h1>
-        <div>
-          <select className="bg-gray-700 p-2 rounded">
-            <option>Kathmandu</option>
-            <option>Pokhara</option>
-            <option>Butwal</option>
-          </select>
-        </div>
-        <nav>
+        <nav className="flex items-center">
           <Link to="#" className="mx-2 text-gray-300 hover:text-white">
             Offers
           </Link>
@@ -26,31 +42,21 @@ const Homepage = () => {
           <Link to="#" className="mx-2 text-gray-300 hover:text-white">
             Schedule
           </Link>
-
-      <Link to="/user/register">
-        <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded ml-4">
-          Register
-        </button>
-      </Link>
-      <Link to="/user/login">
-        <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded ml-4">
-          Login
-        </button>
-      </Link>
+          <Link to="/user/register">
+            <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded ml-4">
+              Register
+            </button>
+          </Link>
+          <Link to="/user/login">
+            <button className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded ml-4">
+              Login
+            </button>
+          </Link>
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <div className="relative w-full h-[80vh] flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('https://via.placeholder.com/1600x800')" }}>
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div className="text-center z-10">
-          <h2 className="text-4xl font-bold">Now Showing</h2>
-          <h1 className="text-6xl font-extrabold mt-2">Draupadi</h1>
-          <button className="mt-4 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 text-lg rounded">
-            Buy Now
-          </button>
-        </div>
-      </div>
+      {/* Modern Carousel */}
+      <ModernCarousel slides={carouselSlides} />
 
       {/* Movie Details */}
       <section className="p-10 text-center">
@@ -65,9 +71,11 @@ const Homepage = () => {
         </div>
 
       </section>
-      <div>
-        <MovieList />
-      </div>
+
+      {/* Movie List */}
+      <MovieList />
+
+      {/* Footer */}
       <Footer />
     </div>
   );
