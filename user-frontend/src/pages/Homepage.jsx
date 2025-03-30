@@ -11,15 +11,16 @@ import posterImage3 from "../assets/poster3.jpeg";
 const Homepage = () => {
   const carouselSlides = [
     {
+      image: posterImage2,
+      title: "Coming Soon",
+      subtitle: "Zaalima",
+    },
+    {
       image: posterImage,
       title: "Now Showing",
       subtitle: "Draupadi",
     },
-    {
-      image: posterImage2,
-      title: "Coming Soon",
-      subtitle: "Another Great Movie",
-    },
+    
     {
       image: posterImage3,
       title: "Featured",

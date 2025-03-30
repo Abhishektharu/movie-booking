@@ -13,6 +13,9 @@ const MovieList = () => {
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
   const totalPages = Math.ceil(movies.length / moviesPerPage);
 
+  console.log("number : " + movies[0]);
+  console.log(movies);
+
   // Get the range of page numbers to display
   const getPageNumbers = () => {
     const delta = 1; // Number of pages to show before and after current page
@@ -22,21 +25,23 @@ const MovieList = () => {
     if (currentPage > 2) {
       pages.push(1);
       if (currentPage > 3) {
-        pages.push('...');
+        pages.push("...");
       }
     }
 
     // Add pages around current page
-    for (let i = Math.max(2, currentPage - delta); 
-         i <= Math.min(totalPages - 1, currentPage + delta); 
-         i++) {
+    for (
+      let i = Math.max(2, currentPage - delta);
+      i <= Math.min(totalPages - 1, currentPage + delta);
+      i++
+    ) {
       pages.push(i);
     }
 
     // Always add last page
     if (currentPage < totalPages - 1) {
       if (currentPage < totalPages - 2) {
-        pages.push('...');
+        pages.push("...");
       }
       pages.push(totalPages);
     }
@@ -57,11 +62,13 @@ const MovieList = () => {
   return (
     <div className="p-10">
       <h2 className="text-3xl font-bold text-white text-center">Now Showing</h2>
-      
+
       {/* Movie Grid */}
       <div className="flex flex-wrap justify-center gap-6 mt-6">
         {currentMovies.length > 0 ? (
-          currentMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+          currentMovies.map((movie) => (
+            <MovieCard key={movie.id} movie={movie} />
+          ))
         ) : (
           <p className="text-white">No movies available.</p>
         )}
@@ -75,8 +82,8 @@ const MovieList = () => {
             disabled={currentPage === 1}
             className={`px-4 py-2 rounded-md ${
               currentPage === 1
-                ? 'bg-gray-600 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
             } text-white transition-colors`}
           >
             Previous
@@ -85,15 +92,15 @@ const MovieList = () => {
           {getPageNumbers().map((page, index) => (
             <button
               key={index}
-              onClick={() => typeof page === 'number' ? paginate(page) : null}
+              onClick={() => (typeof page === "number" ? paginate(page) : null)}
               className={`px-4 py-2 rounded-md ${
                 page === currentPage
-                  ? 'bg-red-700'
-                  : page === '...'
-                  ? 'bg-gray-600 cursor-default'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                  ? "bg-red-700"
+                  : page === "..."
+                  ? "bg-gray-600 cursor-default"
+                  : "bg-blue-600 hover:bg-blue-700"
               } text-white transition-colors`}
-              disabled={page === '...'}
+              disabled={page === "..."}
             >
               {page}
             </button>
@@ -104,8 +111,8 @@ const MovieList = () => {
             disabled={currentPage === totalPages}
             className={`px-4 py-2 rounded-md ${
               currentPage === totalPages
-                ? 'bg-gray-600 cursor-not-allowed'
-                : 'bg-blue-600 hover:bg-blue-700'
+                ? "bg-gray-600 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
             } text-white transition-colors`}
           >
             Next

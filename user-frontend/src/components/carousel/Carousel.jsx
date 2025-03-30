@@ -3,6 +3,7 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 const ModernCarousel = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+// console.log(slides);
 
   // Auto-slide every 5 seconds
   useEffect(() => {
@@ -10,7 +11,7 @@ const ModernCarousel = ({ slides }) => {
       setCurrentIndex((prevIndex) =>
         prevIndex === slides.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000);
+    }, 10000);
     return () => clearInterval(interval);
   }, [slides.length]);
 
@@ -46,8 +47,8 @@ const ModernCarousel = ({ slides }) => {
 
           {/* Slide Text Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-            <h2 className="text-4xl md:text-6xl font-bold">{slide.title}</h2>
-            <p className="text-lg md:text-2xl mt-2">{slide.subtitle}</p>
+            <h2 className="text-4xl md:text-6xl font-bold font-mono text-blue-400 ">{slide.title}</h2>
+            <p className="text-8xl md:text-2xl mt-2 font-serif">{slide.subtitle}</p>
             <button className="mt-4 bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-lg text-lg">
               Book Now
             </button>

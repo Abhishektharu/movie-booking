@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiHome, FiFilm, FiUsers, FiSettings, FiMenu, FiLogOut, FiPlus, FiEdit } from "react-icons/fi";
+
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -9,6 +10,25 @@ const Sidebar = () => {
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
   };
+
+  //navigate
+  const navigate = useNavigate();
+
+  
+
+  const handleLogout = ()=>{
+
+    //add confirmation
+    const confirm = window.confirm("Are you sure you want to logout?");
+    if(confirm){
+
+      //clear the data
+      localStorage.removeItem('access-admin');
+      localStorage.removeItem('admin');
+      
+      navigate('/admin/login', { replace: true });
+    }
+  }
 
   return (
     <div className={`h-screen bg-gray-800 text-white transition-all ${collapsed ? "w-20" : "w-64"} flex flex-col shadow-lg`}>
@@ -61,8 +81,13 @@ const Sidebar = () => {
 
       {/* Logout */}
       <div className="p-4 border-t border-gray-700">
-        <SidebarItem icon={<FiLogOut />} text="Logout" collapsed={collapsed} path="/logout" />
-      </div>
+        <button onClick={handleLogout}className="flex items-center gap-3 p-3 hover:bg-gray-700 transition rounded-lg mx-2 w-full text-left"
+        >
+          <FiLogOut className="text-xl" />
+          {!collapsed && <span className="text-sm font-medium">Logout</span>}
+        
+        </button>
+        </div>
     </div>
   );
 };
