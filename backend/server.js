@@ -13,6 +13,7 @@ import cookieParser from "cookie-parser";
 import {verifyToken} from "./middleware/authMiddleware.js";
 
 import path from "path";
+import { showUsers } from "./controllers/showUsersController.js";
 
 dotenv.config();
 
@@ -40,6 +41,9 @@ app.use("/api/bookings", bookingRoutes);
 
 app.use("/api/showtimes", showtimeRoutes);
 app.use("/api/seats", seatRoutes);
+
+//users 
+app.use("/api/showUsers", showUsers)
 
 app.use("/api/theaters",theaterRoutes);
 
