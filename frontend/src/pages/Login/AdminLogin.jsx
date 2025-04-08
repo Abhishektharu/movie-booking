@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { FiMail, FiLock, FiAlertCircle } from 'react-icons/fi';
 
 const AdminLogin = () => {
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/admin/dashboard";
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -31,7 +33,8 @@ const AdminLogin = () => {
             if(res.data.token) {
                 localStorage.setItem("access-admin", res.data.token);
                 localStorage.setItem("admin", JSON.stringify(res.data.user));
-                navigate('/admin/dashboard');
+                // Navigate to the page user tried to visit before login
+                navigate(from, { replace: true });
             }
         } catch (error) {
             setError(error.response?.data?.message || 'Login failed. Please try again.');

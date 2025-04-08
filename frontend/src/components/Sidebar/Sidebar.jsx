@@ -1,7 +1,21 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiHome, FiFilm, FiUsers, FiSettings, FiMenu, FiLogOut, FiPlus, FiEdit } from "react-icons/fi";
-
+import { 
+  FiHome, 
+  FiFilm, 
+  FiUsers, 
+  FiSettings, 
+  FiMenu, 
+  FiLogOut, 
+  FiPlus, 
+  FiEdit,
+  FiClock,
+  FiMapPin,
+  FiChevronRight,
+  FiList,
+  FiPlusCircle
+} from "react-icons/fi";
+import { MdTheaterComedy } from "react-icons/md";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -43,7 +57,12 @@ const Sidebar = () => {
       {/* Sidebar Menu */}
       <nav className="flex-grow">
         <ul className="mt-4 space-y-2">
-          <SidebarItem icon={<FiHome />} text="Dashboard" collapsed={collapsed} path="/admin/dashboard" />
+          <SidebarItem 
+            icon={<FiHome className="text-gray-300" />} 
+            text="Dashboard" 
+            collapsed={collapsed} 
+            path="/admin/dashboard" 
+          />
           
           {/* Movies Section with Dropdown */}
           <li>
@@ -52,42 +71,67 @@ const Sidebar = () => {
               className="flex items-center justify-between w-full p-3 hover:bg-gray-700 transition rounded-lg mx-2"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl"><FiFilm /></span>
+                <FiFilm className="text-xl text-gray-300" />
                 {!collapsed && <span className="text-sm font-medium">Movies</span>}
               </div>
               {!collapsed && (
-                <span className={`transform ${moviesOpen ? "rotate-90" : ""} transition-transform`}>
-                  ▶
-                </span>
+                <FiChevronRight 
+                  className={`transform transition-transform duration-200 ${
+                    moviesOpen ? "rotate-90" : ""
+                  }`}
+                />
               )}
             </button>
 
             {/* Submenu for Movies */}
             {moviesOpen && !collapsed && (
               <ul className="ml-6 space-y-2">
-                <SidebarSubItem text="All Movies" path="/" />
-                <SidebarSubItem text="Add Movie" path="/admin/movies/add" icon={<FiPlus />} />
-                <SidebarSubItem text="Edit Movie" path="/admin/movies/edit" icon={<FiEdit />} />
+                <SidebarSubItem icon={<FiList />} text="All Movies" path="/admin/all-movies" />
+                <SidebarSubItem icon={<FiPlusCircle />} text="Add Movie" path="/admin/movies/add" />
               </ul>
             )}
           </li>
 
-          <SidebarItem icon={<FiUsers />} text="Users" collapsed={collapsed} path="/admin/users" />
-          <SidebarItem icon={<FiSettings />} text="Settings" collapsed={collapsed} path="/admin/settings" />
-          <SidebarItem  text="Shows" collapsed={collapsed} path="/admin/add-show" />
-          <SidebarItem  text="Theater" collapsed={collapsed} path="/admin/add-theater" />
+          <SidebarItem 
+            icon={<FiUsers className="text-gray-300" />} 
+            text="Users" 
+            collapsed={collapsed} 
+            path="/admin/users" 
+          />
+          
+          {/* <SidebarItem 
+            icon={<FiSettings className="text-gray-300" />} 
+            text="Settings" 
+            collapsed={collapsed} 
+            path="/admin/settings" 
+          /> */}
+          
+          <SidebarItem 
+            icon={<FiClock className="text-gray-300" />} 
+            text="Shows" 
+            collapsed={collapsed} 
+            path="/admin/add-show" 
+          />
+          
+          <SidebarItem 
+            icon={<MdTheaterComedy className="text-gray-300 text-xl" />} 
+            text="Theater" 
+            collapsed={collapsed} 
+            path="/admin/add-theater" 
+          />
         </ul>
       </nav>
 
       {/* Logout */}
       <div className="p-4 border-t border-gray-700">
-        <button onClick={handleLogout}className="flex items-center gap-3 p-3 hover:bg-gray-700 transition rounded-lg mx-2 w-full text-left"
+        <button 
+          onClick={handleLogout}
+          className="flex items-center gap-3 p-3 hover:bg-gray-700 transition rounded-lg mx-2 w-full text-left"
         >
-          <FiLogOut className="text-xl" />
+          <FiLogOut className="text-xl text-gray-300" />
           {!collapsed && <span className="text-sm font-medium">Logout</span>}
-        
         </button>
-        </div>
+      </div>
     </div>
   );
 };
@@ -103,10 +147,10 @@ const SidebarItem = ({ icon, text, collapsed, path }) => {
 };
 
 // Sidebar Sub Item Component (Nested Items)
-const SidebarSubItem = ({ text, path, icon }) => {
+const SidebarSubItem = ({ icon, text, path }) => {
   return (
     <Link to={path} className="flex items-center gap-3 p-2 pl-5 hover:bg-gray-700 transition rounded-lg">
-      {icon && <span className="text-lg">{icon}</span>}
+      {icon && <span className="text-lg text-gray-300">{icon}</span>}
       <span className="text-sm font-medium">{text}</span>
     </Link>
   );

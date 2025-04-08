@@ -14,49 +14,34 @@ import AdminDashboard from './Dashboard/AdminDashboard'
 import AddTheater from './pages/Theater/AddTheater'
 import AddShowtime from './pages/Show/AddShowtime'
 import Users from './pages/Users/Users'
-
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <>
     <Router>
       <Routes>
-
-        <Route path='/admin/login' element = {<AdminLogin />} />
-        <Route path='/user/register' element = {<UserRegister />} />
-      </Routes>
-      <Routes>
-        <Route path='/' element={<Layout/>}>
-        <Route index element = {<AdminLogin />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path='/movies/:id' element ={<MovieDetails /> }/>
-        <Route path='/seat-selection/:showtimeId' element={<SeatSelection />}/>
-
-
-        <Route path='/user/login' element = {<UserLogin />} />
+        {/* Public Routes */}
+        <Route path='/admin/login' element={<AdminLogin />} />
+        <Route path='/admin/register' element={<AdminRegister />} />
         
-        <Route path='/admin/register' element = {<AdminRegister />} />
-
-
-        <Route path='/admin/dashboard' element = {<AdminDashboard />} />
-
-
-
-        <Route path='/admin/movies/add' element = {<AddMovie />} />
-        <Route path='/layout' element = {<Layout />}/>
-
-        <Route path='/dashboard' element = {<AdminDashboard />} />
-        <Route path='/admin/add-theater' element = {<AddTheater />} />
-        <Route path='/admin/add-show' element = {<AddShowtime />} />
-
-        <Route path='/admin/users' element = {<Users />} />
-
-
+        {/* Protected Admin Routes */}
+        <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path='/profile' element={<Profile />} />
+            <Route path='/movies/:id' element={<MovieDetails />} />
+            <Route path='/seat-selection/:showtimeId' element={<SeatSelection />} />
+            <Route path='/user/login' element={<UserLogin />} />
+            <Route path='/admin/dashboard' element={<AdminDashboard />} />
+            <Route path='/admin/movies/add' element={<AddMovie />} />
+            <Route path='/admin/add-theater' element={<AddTheater />} />
+            <Route path='/admin/add-show' element={<AddShowtime />} />
+            <Route path='/admin/users' element={<Users />} />
+            <Route path='/admin/all-movies' element={<HomePage />} />
+          </Route>
         </Route>
-
       </Routes>
     </Router>
-    </>
   );
 }
 
