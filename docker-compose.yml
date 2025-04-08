@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: movie_booking_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: movie_booking
+      MYSQL_USER: movieuser
+      MYSQL_PASSWORD: moviepass
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./backend/database/tables.sql:/docker-entrypoint-initdb.d/tables.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=root
+      - DB_NAME=movie_booking
+      - JWT_SECRET=your_secret_key
+    depends_on:
+      db:
+        condition: service_healthy
+
+  user-frontend:
+    build:
+      context: ./user-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    environment:
+      - VITE_API_BASE_URL=http://localhost:5000
+
+  admin-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:81"
+    depends_on:
+      - api
+    environment:
+      - VITE_API_BASE_URL=http://localhost:5000
+    

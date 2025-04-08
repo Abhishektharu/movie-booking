@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/", getMovies);
 router.get("/:id", getMovieById);
-router.post("/",upload.single("image"),verifyToken, addMovie);
+router.post("/",upload.single("image"), addMovie);
 router.delete("/:movieId", deleteMovie );
 router.put("/:movieId", updateMovie);
 

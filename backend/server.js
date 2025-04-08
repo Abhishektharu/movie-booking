@@ -26,7 +26,7 @@ const allowedSites = {
     credentials : true
 }
 
-app.use(cors(allowedSites));
+app.use(cors());
 app.use(express.json());
 
 // Serve uploaded images as static files

@@ -23,16 +23,16 @@ function App() {
       <Routes>
 
         <Route path='/admin/login' element = {<AdminLogin />} />
+        <Route path='/user/register' element = {<UserRegister />} />
       </Routes>
       <Routes>
         <Route path='/' element={<Layout/>}>
-        <Route index element = {<HomePage />} />
+        <Route index element = {<AdminLogin />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/movies/:id' element ={<MovieDetails /> }/>
         <Route path='/seat-selection/:showtimeId' element={<SeatSelection />}/>
 
 
-        <Route path='/user/register' element = {<UserRegister />} />
         <Route path='/user/login' element = {<UserLogin />} />
         
         <Route path='/admin/register' element = {<AdminRegister />} />
