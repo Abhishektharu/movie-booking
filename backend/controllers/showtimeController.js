@@ -12,6 +12,17 @@ export const getShowtimesByMovie = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch showtimes' });
   }
 };
+
+export const getShowtimes = async (req, res) => {
+  try {
+    const [showtimes] = await db.query('SELECT * FROM showtimes');
+    res.json(showtimes);
+  } catch (error) {
+    
+    res.status(500).json({ error: 'Failed to fetch showtimes' });
+  }
+};
+
 export const addShowtime = async (req, res) => {
   try {
     const { movie_id, theater_id, show_date, show_time, price } = req.body;

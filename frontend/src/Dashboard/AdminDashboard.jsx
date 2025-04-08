@@ -12,7 +12,7 @@ import {
 import axios from "axios";
 import { getBackend } from "../utils/api";
 import { FiUsers, FiFilm, FiDollarSign, FiCalendar } from "react-icons/fi";
-
+import {showDate} from "../utils/api";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -21,7 +21,8 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+  
 const AdminDashboard = () => {
   const [stats, setStats] = useState({
     totalUsers: 0,
@@ -31,14 +32,17 @@ const AdminDashboard = () => {
   });
   const [monthlyRevenue, setMonthlyRevenue] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showTimes, setShowTimes] = useState([]);
+  console.log(showTimes);
+  
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
         const [usersRes, moviesRes, bookingsRes] = await Promise.all([
-          axios.get(getBackend("/api/users")),
+          axios.get(getBackend("/api/showUsers")),
           axios.get(getBackend("/api/movies")),
-          axios.get(getBackend("/api/bookings")),
+          axios.get(getBackend("/api/bookings/getAllBookings")),
         ]);
 
         setStats({
@@ -62,6 +66,21 @@ const AdminDashboard = () => {
 
     fetchDashboardData();
   }, []);
+
+  useEffect(()=>{
+    const fetchShowTimes = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/showtimes/allshowtimes`);
+        setShowTimes(res.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchShowTimes();
+  },[]);
+  
 
   if (loading) {
     return <div className="text-center mt-10">Loading...</div>;
@@ -129,58 +148,30 @@ const AdminDashboard = () => {
             <table className="min-w-full border border-gray-200 rounded-lg">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    ID
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    User
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Movie
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
-                    Amount
-                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Movie</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Time</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    1
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    John Doe
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    Inception
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    2025-03-31
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    RS 1500
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    2
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    Jane Smith
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    The Matrix
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    2025-03-30
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    RS 1200
-                  </td>
-                </tr>
+                {showTimes.map((item, index) => (
+                  <tr key={index} className="hover:bg-gray-50">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.movie_id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">RS {item.price}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{showDate(item.show_date)}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.show_time}</td>
+                  </tr>
+                ))}
+                {showTimes.length === 0 && (
+                  <tr>
+                    <td colSpan="5" className="px-6 py-4 text-center text-gray-500">
+                      No shows available
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

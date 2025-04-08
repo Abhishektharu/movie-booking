@@ -29,3 +29,18 @@ export const getUserBookings = async (req,res) => {
         res.status(500).json({message: "Failed to fetch booking. "}, error);
     }
 }
+
+export const getAllBookings = async (req, res) => {
+  try {
+    const getMovies = "SELECT * FROM `bookings`";
+
+    const [rows, fields] = await db.query(getMovies);
+
+    // console.log(rows);
+    // console.log(fields);
+    return res.status(200).json(rows);
+  } catch (err) {
+    // console.log(err);
+    return res.json(err.message);
+  }
+};
