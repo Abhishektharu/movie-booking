@@ -5,21 +5,28 @@ import db from "../database/connection.js";
 export const getShowtimesByMovie = async (req, res) => {
   try {
     const { movie_id } = req.query;
-    const [showtimes] = await db.query('SELECT * FROM showtimes WHERE movie_id = ?', [movie_id]);
+    const [showtimes] = await db.query(
+      "SELECT * FROM showtimes WHERE movie_id = ?",
+      [movie_id]
+    );
     res.json(showtimes);
   } catch (error) {
-    
-    res.status(500).json({ error: 'Failed to fetch showtimes' });
+    res.status(500).json({ error: "Failed to fetch showtimes" });
   }
 };
 
 export const getShowtimes = async (req, res) => {
   try {
-    const [showtimes] = await db.query('SELECT * FROM showtimes');
+    const [showtimes] = await db.query(`
+    select showtimes.id as show_id,movies.id as movie_id, movies.title, showtimes.show_date, showtimes.show_time, showtimes.price
+from showtimes
+inner join 
+movies on showtimes.movie_id = movies.id order by showtimes.id desc
+LIMIT 5; 
+      `);
     res.json(showtimes);
   } catch (error) {
-    
-    res.status(500).json({ error: 'Failed to fetch showtimes' });
+    res.status(500).json({ error: "Failed to fetch showtimes" });
   }
 };
 

@@ -65,134 +65,126 @@ const AddMovie = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 md:p-6">
-      <div className="max-w-4xl mx-auto">
-        {/* Header Section */}
-        <div className="bg-white rounded-t-2xl shadow-sm p-6 border-b border-slate-100">
-          <h2 className="text-3xl font-bold text-slate-800">Add New Movie</h2>
-          <p className="mt-2 text-slate-600">Create a new movie listing</p>
+    <div className=" bg-gradient-to-br from-slate-50 to-slate-100 p-4">
+      <div className="max-w-6xl mx-auto">
+        {/* More compact header */}
+        <div className="bg-white rounded-t-xl shadow-sm p-4 border-b border-slate-100">
+          <h2 className="text-2xl font-bold text-slate-800">Add New Movie</h2>
+          <p className="text-sm text-slate-600">Create a new movie listing</p>
         </div>
 
-        {/* Main Form Section */}
-        <div className="bg-white rounded-b-2xl shadow-sm p-6 space-y-8">
-          {/* Image Upload Section */}
-          <div className="w-full">
-            {previewUrl ? (
-              <div className="relative group">
-                <img 
-                  src={previewUrl} 
-                  alt="Preview" 
-                  className="w-full h-[400px] object-cover rounded-xl shadow-sm"
-                />
-                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-xl flex items-center justify-center">
-                  <label className="px-4 py-2 bg-white rounded-lg shadow-lg cursor-pointer hover:bg-slate-50 transition-colors">
-                    Change Image
-                    <input 
-                      type="file"
-                      name="image"
-                      accept="image/*"
-                      onChange={handleFileChange}
-                      className="hidden"
-                    />
-                  </label>
+        <div className="bg-white rounded-b-xl shadow-sm p-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Left Side - More compact image upload */}
+            <div className="w-full">
+              {previewUrl ? (
+                <div className="relative group">
+                  <img 
+                    src={previewUrl} 
+                    alt="Preview" 
+                    className="w-full h-[400px] object-cover rounded-lg shadow-sm"
+                  />
+                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center">
+                    <label className="px-3 py-2 bg-white rounded-md shadow cursor-pointer hover:bg-slate-50">
+                      Change Image
+                      <input type="file" name="image" accept="image/*" onChange={handleFileChange} className="hidden"/>
+                    </label>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <label className="border-2 border-dashed border-slate-200 rounded-xl p-8 flex flex-col items-center justify-center h-[400px] cursor-pointer hover:border-slate-300 transition-colors">
-                <svg className="w-16 h-16 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                <p className="mt-4 text-slate-500 font-medium">Click to upload movie poster</p>
-                <p className="mt-2 text-sm text-slate-400">SVG, PNG, JPG or GIF</p>
-                <input 
-                  type="file"
-                  name="image"
-                  accept="image/*"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-              </label>
-            )}
-          </div>
-
-          {/* Form Fields */}
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Movie Title</label>
-                <input 
-                  type="text"
-                  name="title"
-                  placeholder="Enter movie title"
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-400 transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Genre</label>
-                <select
-                  name="genre"
-                  onChange={handleChange}
-                  value={movieData.genre}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white transition-all"
-                >
-                  <option value="">Select genre</option>
-                  {genres.map((genre) => (
-                    <option key={genre} value={genre}>{genre}</option>
-                  ))}
-                </select>
-              </div>
+              ) : (
+                <label className="border-2 border-dashed border-slate-200 rounded-lg p-6 flex flex-col items-center justify-center h-[400px] cursor-pointer hover:border-slate-300">
+                  <svg className="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  <p className="mt-2 text-sm font-medium text-slate-600">Click to upload movie poster</p>
+                  <p className="text-xs text-slate-400">SVG, PNG, JPG or GIF</p>
+                  <input type="file" name="image" accept="image/*" onChange={handleFileChange} className="hidden"/>
+                </label>
+              )}
             </div>
 
+            {/* Right Side - More compact form */}
             <div>
-              <label className="block mb-2 text-sm font-semibold text-slate-700">Description</label>
-              <textarea 
-                name="description"
-                placeholder="Enter movie description"
-                onChange={handleChange}
-                required
-                rows="4"
-                className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-400 transition-all resize-none"
-              />
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  {/* Title and Genre in same row */}
+                  <div className="col-span-2 sm:col-span-1">
+                    <label className="text-sm font-medium text-slate-700">Movie Title</label>
+                    <input 
+                      type="text"
+                      name="title"
+                      placeholder="Enter title"
+                      onChange={handleChange}
+                      required
+                      className="mt-1 w-full px-3 py-2 rounded-md border border-slate-200 focus:ring-1 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div className="col-span-2 sm:col-span-1">
+                    <label className="text-sm font-medium text-slate-700">Genre</label>
+                    <select
+                      name="genre"
+                      onChange={handleChange}
+                      value={movieData.genre}
+                      required
+                      className="mt-1 w-full px-3 py-2 rounded-md border border-slate-200 focus:ring-1 focus:ring-blue-500 bg-white"
+                    >
+                      <option value="">Select genre</option>
+                      {genres.map((genre) => (
+                        <option key={genre} value={genre}>{genre}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div>
+                  <label className="text-sm font-medium text-slate-700">Description</label>
+                  <textarea 
+                    name="description"
+                    placeholder="Enter movie description"
+                    onChange={handleChange}
+                    required
+                    rows="4"
+                    className="mt-1 w-full px-3 py-2 rounded-md border border-slate-200 focus:ring-1 focus:ring-blue-500 resize-none"
+                  />
+                </div>
+
+                {/* Duration and Release Date in same row */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-slate-700">Duration (mins)</label>
+                    <input 
+                      type="number"
+                      name="duration"
+                      placeholder="Duration"
+                      min="1"
+                      onChange={handleChange}
+                      required
+                      className="mt-1 w-full px-3 py-2 rounded-md border border-slate-200 focus:ring-1 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-700">Release Date</label>
+                    <input 
+                      type="date"
+                      name="release_date"
+                      onChange={handleChange}
+                      min={today}
+                      required
+                      className="mt-1 w-full px-3 py-2 rounded-md border border-slate-200 focus:ring-1 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                <button 
+                  type="submit"
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 mt-4"
+                >
+                  Add Movie
+                </button>
+              </form>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Duration (mins)</label>
-                <input 
-                  type="number"
-                  name="duration"
-                  placeholder="Enter duration"
-                  min="1"
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-slate-400 transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block mb-2 text-sm font-semibold text-slate-700">Release Date</label>
-                <input 
-                  type="date"
-                  name="release_date"
-                  onChange={handleChange}
-                  min={today}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-700 transition-all"
-                />
-              </div>
-            </div>
-
-            <button 
-              type="submit"
-              className="w-full bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md"
-            >
-              Add Movie
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </div>

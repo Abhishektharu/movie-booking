@@ -84,7 +84,7 @@ const AddShowtime = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6">
+    <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6">
       <div className="max-w-2xl mx-auto">
         {/* Header Card */}
         <div className="bg-white rounded-t-2xl shadow-sm p-6 border-b border-gray-100">

@@ -87,7 +87,7 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="p-6 min-h-screen bg-gray-100">
+    <div className="p-6  bg-gray-100">
       <h1 className="text-3xl font-bold mb-6">Admin Dashboard</h1>
 
       {/* Statistics Cards */}
@@ -143,7 +143,7 @@ const AdminDashboard = () => {
 
         {/* Recent Bookings Table */}
         <div className="bg-white rounded-xl shadow-md p-6 w-full lg:w-1/2">
-          <h2 className="text-xl font-semibold mb-4">Recent Bookings</h2>
+          <h2 className="text-xl font-semibold mb-4">Recent Shows</h2>
           <div className="overflow-x-auto">
             <table className="min-w-full border border-gray-200 rounded-lg">
               <thead className="bg-gray-50">
@@ -158,8 +158,8 @@ const AdminDashboard = () => {
               <tbody className="divide-y divide-gray-200">
                 {showTimes.map((item, index) => (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.id}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.movie_id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.title}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">RS {item.price}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{showDate(item.show_date)}</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.show_time}</td>
