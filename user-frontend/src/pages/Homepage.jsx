@@ -32,7 +32,7 @@ const Homepage = () => {
     <div className="bg-gray-900 text-white min-h-screen">
       {/* Navbar */}
       <header className="flex justify-between items-center p-5 bg-gray-800">
-        <h1 className="text-2xl font-bold">Duplicate QFX Cinemas</h1>
+        <h1 className="text-2xl font-bold">QFX Cinemas</h1>
         <nav className="flex items-center">
           <Link to="#" className="mx-2 text-gray-300 hover:text-white">
             Offers

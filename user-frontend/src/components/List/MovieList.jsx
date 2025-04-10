@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 import useMovies from "../../hooks/useMovies";
 import MovieCard from "../card/MovieCard";
+import usePagination from "../../hooks/usePagination";
 
 const MovieList = () => {
-  const { movies, loading } = useMovies();
   const [currentPage, setCurrentPage] = useState(1);
-  const moviesPerPage = 10;
+  const moviesPerPage = 5;
+  const { movies, loading, pagination } = usePagination(currentPage, moviesPerPage);
 
-  // Calculate pagination values
-  const indexOfLastMovie = currentPage * moviesPerPage;
-  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
-  const totalPages = Math.ceil(movies.length / moviesPerPage);
-
-  console.log("number : " + movies[0]);
-  console.log(movies);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= pagination.totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   // Get the range of page numbers to display
   const getPageNumbers = () => {
-    const delta = 1; // Number of pages to show before and after current page
+    const delta = 1;
     let pages = [];
 
-    // Always add first page
     if (currentPage > 2) {
       pages.push(1);
       if (currentPage > 3) {
@@ -29,34 +26,30 @@ const MovieList = () => {
       }
     }
 
-    // Add pages around current page
     for (
       let i = Math.max(2, currentPage - delta);
-      i <= Math.min(totalPages - 1, currentPage + delta);
+      i <= Math.min(pagination.totalPages - 1, currentPage + delta);
       i++
     ) {
       pages.push(i);
     }
 
-    // Always add last page
-    if (currentPage < totalPages - 1) {
-      if (currentPage < totalPages - 2) {
+    if (currentPage < pagination.totalPages - 1) {
+      if (currentPage < pagination.totalPages - 2) {
         pages.push("...");
       }
-      pages.push(totalPages);
+      pages.push(pagination.totalPages);
     }
 
     return pages;
   };
 
-  const paginate = (pageNumber) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-    }
-  };
-
   if (loading) {
-    return <p className="text-center text-white">Loading movies...</p>;
+    return (
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
   }
 
   return (
@@ -65,17 +58,15 @@ const MovieList = () => {
 
       {/* Movie Grid */}
       <div className="flex flex-wrap justify-center gap-6 mt-6">
-        {currentMovies.length > 0 ? (
-          currentMovies.map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))
+        {movies.length > 0 ? (
+          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
         ) : (
           <p className="text-white">No movies available.</p>
         )}
       </div>
 
       {/* Pagination Controls */}
-      {totalPages > 1 && (
+      {pagination.totalPages > 1 && (
         <div className="flex justify-center mt-8 gap-2">
           <button
             onClick={() => paginate(currentPage - 1)}
@@ -108,9 +99,9 @@ const MovieList = () => {
 
           <button
             onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === pagination.totalPages}
             className={`px-4 py-2 rounded-md ${
-              currentPage === totalPages
+              currentPage === pagination.totalPages
                 ? "bg-gray-600 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
             } text-white transition-colors`}
@@ -122,7 +113,8 @@ const MovieList = () => {
 
       {/* Page Information */}
       <div className="text-center text-gray-400 mt-4">
-        Page {currentPage} of {totalPages}
+        Page {currentPage} of {pagination.totalPages} 
+        ({pagination.totalMovies} total movies)
       </div>
     </div>
   );

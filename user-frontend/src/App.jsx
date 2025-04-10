@@ -5,8 +5,7 @@ import './App.css';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import MovieDetails from './pages/MovieDetails/MovieDetails';
-
-
+import SeatSelectionPage from './pages/SeatSelection/SeatSelection';
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +15,7 @@ function App() {
         <Route path="/user/register" element={<Register />} />
 
         <Route path='/movies/:id' element ={<MovieDetails /> }/>
+        <Route path='/seat-selection/:showtimeId' element={<SeatSelectionPage />} />
       </Routes>
     </BrowserRouter>
   );

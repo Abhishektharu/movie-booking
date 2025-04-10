@@ -5,7 +5,7 @@ import db from "../database/connection.js";
 
 export const getMovies = async (req, res) => {
   try {
-    const getMovies = "SELECT * FROM `movies`";
+    const getMovies = "SELECT * FROM `movies` order by `id` desc";
 
     const [rows, fields] = await db.query(getMovies);
 
@@ -15,6 +15,39 @@ export const getMovies = async (req, res) => {
   } catch (err) {
     // console.log(err);
     return res.json(err.message);
+  }
+};
+
+export const getMoviesByPage = async (req, res) => {
+  try {
+    const page = parseInt(req.params.page) || 1; // Get page from route params
+    const pageSize = parseInt(req.params.pageSize) || 10; // Get pageSize from route params
+    const offset = (page - 1) * pageSize;
+
+    // Get total count of movies
+    const [countResult] = await db.query('SELECT COUNT(*) as total FROM movies');
+    const totalMovies = countResult[0].total;
+
+    // Get movies for current page
+    const sql = 'SELECT * FROM movies ORDER BY id DESC LIMIT ? OFFSET ?';
+    const [movies] = await db.query(sql, [pageSize, offset]);
+    // console.log(fields);
+    
+
+    return res.status(200).json({
+      movies,
+      currentPage: page,
+      totalPages: Math.ceil(totalMovies / pageSize),
+      totalMovies,
+      pageSize
+    });
+
+  } catch (err) {
+    console.error("Error in getMoviesByPage:", err);
+    return res.status(500).json({ 
+      error: "Failed to fetch movies",
+      message: err.message 
+    });
   }
 };
 
