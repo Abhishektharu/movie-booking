@@ -20,6 +20,8 @@ const usePagination = (page = 1, pageSize = 10)=>{
             try {
                 setLoading(false);
                 const response = await axios.get(`${API_BASE_URL}/api/movies/page/${page}/${pageSize}`);
+                // const response = await axios.get(`${API_BASE_URL}/api/movies/page/${page}/${pageSize}/${searchKeyword}`);
+                // const response = await axios.get(`${API_BASE_URL}/api/movies/page/?page=${page}&pageSize${pageSize}`);
                 setMovies(response.data.movies);
                 setPagination({
                     currentPage: response.data.currentPage,

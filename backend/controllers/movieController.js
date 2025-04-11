@@ -24,6 +24,8 @@ export const getMoviesByPage = async (req, res) => {
     const pageSize = parseInt(req.params.pageSize) || 10; // Get pageSize from route params
     const offset = (page - 1) * pageSize;
 
+    // const search = parseInt(req.params.searchkeyword) || 10;
+
     // Get total count of movies
     const [countResult] = await db.query('SELECT COUNT(*) as total FROM movies');
     const totalMovies = countResult[0].total;

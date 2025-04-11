@@ -6,6 +6,7 @@ import ModernCarousel from "../components/carousel/Carousel";
 import posterImage from "../assets/poster.jpeg";
 import posterImage2 from "../assets/poster2.png";
 import posterImage3 from "../assets/poster3.jpeg";
+import Newsletter from "../components/Newsletter/Newsletter";
 
 
 const Homepage = () => {
@@ -75,6 +76,7 @@ const Homepage = () => {
 
       {/* Movie List */}
       <MovieList />
+      <Newsletter/>
 
       {/* Footer */}
       <Footer />

@@ -5,7 +5,7 @@ import usePagination from "../../hooks/usePagination";
 
 const MovieList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const moviesPerPage = 5;
+  const moviesPerPage = 10;
   const { movies, loading, pagination } = usePagination(currentPage, moviesPerPage);
 
   const paginate = (pageNumber) => {
