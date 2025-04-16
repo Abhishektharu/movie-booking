@@ -15,6 +15,8 @@ import {verifyToken} from "./middleware/authMiddleware.js";
 import path from "path";
 import { showUsers } from "./controllers/showUsersController.js";
 import emailRoutes from "./routes/emailRoute.js"
+
+import {startEmailWorker} from "./controllers/emailController.js"
 dotenv.config();
 
 const app = express();
@@ -47,6 +49,9 @@ app.use("/api/showUsers", showUsers)
 
 app.use("/api/theaters",theaterRoutes);
 app.use("/api/email",emailRoutes )
+
+// Start the email worker
+// startEmailWorker();
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

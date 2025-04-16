@@ -13,7 +13,8 @@ import {
   FiMapPin,
   FiChevronRight,
   FiList,
-  FiPlusCircle
+  FiPlusCircle,
+  FiMail
 } from "react-icons/fi";
 import { MdTheaterComedy } from "react-icons/md";
 
@@ -118,6 +119,13 @@ const Sidebar = () => {
             text="Theater" 
             collapsed={collapsed} 
             path="/admin/add-theater" 
+          />
+
+          <SidebarItem 
+            icon={<FiMail className="text-gray-300" />} 
+            text="Send Email" 
+            collapsed={collapsed} 
+            path="/admin/send-email" 
           />
         </ul>
       </nav>

@@ -15,6 +15,7 @@ import AddTheater from './pages/Theater/AddTheater'
 import AddShowtime from './pages/Show/AddShowtime'
 import Users from './pages/Users/Users'
 import ProtectedRoute from './components/ProtectedRoute';
+import SendEmail from './components/SendEmail/SendEmail'
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
             <Route path='/admin/add-show' element={<AddShowtime />} />
             <Route path='/admin/users' element={<Users />} />
             <Route path='/admin/all-movies' element={<HomePage />} />
+
+            <Route path="/admin/send-email" element={<SendEmail />} />
+            
           </Route>
         </Route>
       </Routes>
