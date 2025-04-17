@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Add this import
 import axios from "axios";
 import {getBackend} from "../../utils/api"
+
 const Login = () => {
+  const navigate = useNavigate(); // Add navigate hook
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [formData, setFormData] = useState({
     email: "",
@@ -29,6 +32,12 @@ const Login = () => {
       if (res !== null || res.length !== undefined) {
         localStorage.setItem("access-user", JSON.stringify(res.data.token));
         localStorage.setItem("user", JSON.stringify(res.data.user));
+        
+        // Add navigation after successful login
+        setSuccess("Login successful! Redirecting...");
+        setTimeout(() => {
+          navigate('/', { replace: true });
+        }, 500); // Redirect after 1.5 seconds to show success message
       }
     } catch (error) {
       setError(error.response?.data?.message || "Login failed");
