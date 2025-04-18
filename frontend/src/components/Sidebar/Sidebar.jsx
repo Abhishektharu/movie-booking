@@ -121,12 +121,7 @@ const Sidebar = () => {
             path="/admin/add-theater" 
           />
 
-          <SidebarItem 
-            icon={<FiMail className="text-gray-300" />} 
-            text="Send Email" 
-            collapsed={collapsed} 
-            path="/admin/send-email" 
-          />
+          
         </ul>
       </nav>
 

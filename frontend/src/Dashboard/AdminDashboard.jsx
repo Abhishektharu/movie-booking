@@ -102,11 +102,11 @@ const AdminDashboard = () => {
           value={stats.totalMovies}
           icon={<FiFilm className="text-purple-500 text-3xl" />}
         />
-        <StatCard
+        {/* <StatCard
           title="Total Revenue"
           value={`RS ${stats.totalRevenue}`}
           icon={<FiDollarSign className="text-green-500 text-3xl" />}
-        />
+        /> */}
         <StatCard
           title="Total Bookings"
           value={stats.totalBookings}

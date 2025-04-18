@@ -49,18 +49,26 @@ const AddMovie = () => {
     if (image) formData.append("image", image);
 
     try {
-      const res = await axios.post(getBackend("/api/movies/"), formData, {
+      // Add the movie
+      const movieRes = await axios.post(getBackend("/api/movies/"), formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      console.log("Movie Added:", res.data);
-      alert("Movie added successfully!");
-      setTimeout(()=>{
-        navigate("/admin/all-movies")
+      console.log("Movie Added:", movieRes.data);
+
+      // Send email notification to subscribers
+      await axios.post(getBackend("/api/email/send-movie-email"), {
+        movieName: movieData.title
+      });
+
+      alert("Movie added successfully and notification sent to subscribers!");
+      setTimeout(() => {
+        navigate("/admin/all-movies");
       }, 2000);
 
     } catch (error) {
-      console.error("Error adding movie:", error.response?.data || error.message);
+      console.error("Error:", error.response?.data || error.message);
+      alert("Error adding movie or sending notifications");
     }
   };
 

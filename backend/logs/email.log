@@ -9,3 +9,17 @@
 [2025-04-18T05:41:10.165Z] {"timestamp":"2025-04-18T05:41:10.165Z","level":"info","action":"EMAIL_SENT","recipient":"chris292@demo.net","movieName":"ddsdf"}
 [2025-04-18T05:41:21.537Z] {"timestamp":"2025-04-18T05:41:21.537Z","level":"info","action":"EMAIL_SENT","recipient":"chris670@example.com","movieName":"ddsdf"}
 [2025-04-18T05:41:25.729Z] {"timestamp":"2025-04-18T05:41:25.729Z","level":"info","action":"EMAIL_SENT","recipient":"emma89@test.org","movieName":"ddsdf"}
+[2025-04-18T05:47:31.668Z] {"timestamp":"2025-04-18T05:47:31.668Z","level":"info","action":"WORKER_STARTED","movieName":"Race3"}
+[2025-04-18T05:47:36.702Z] {"timestamp":"2025-04-18T05:47:36.702Z","level":"info","action":"EMAIL_SENT","recipient":"test@gmail.com","movieName":"Race3"}
+[2025-04-18T05:47:40.368Z] {"timestamp":"2025-04-18T05:47:40.368Z","level":"info","action":"EMAIL_SENT","recipient":"testt@gmail.com","movieName":"Race3"}
+[2025-04-18T05:47:44.722Z] {"timestamp":"2025-04-18T05:47:44.722Z","level":"info","action":"EMAIL_SENT","recipient":"admin@admin","movieName":"Race3"}
+[2025-04-18T05:47:49.036Z] {"timestamp":"2025-04-18T05:47:49.036Z","level":"info","action":"EMAIL_SENT","recipient":"admin@admin.com","movieName":"Race3"}
+[2025-04-18T05:47:53.212Z] {"timestamp":"2025-04-18T05:47:53.212Z","level":"info","action":"EMAIL_SENT","recipient":"noah236@example.com","movieName":"Race3"}
+[2025-04-18T05:47:57.469Z] {"timestamp":"2025-04-18T05:47:57.469Z","level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"Race3"}
+[2025-04-18T05:48:01.534Z] {"timestamp":"2025-04-18T05:48:01.534Z","level":"info","action":"EMAIL_SENT","recipient":"emma893@example.com","movieName":"Race3"}
+[2025-04-18T05:48:05.746Z] {"timestamp":"2025-04-18T05:48:05.746Z","level":"info","action":"EMAIL_SENT","recipient":"chris292@demo.net","movieName":"Race3"}
+[2025-04-18T05:48:09.974Z] {"timestamp":"2025-04-18T05:48:09.974Z","level":"info","action":"EMAIL_SENT","recipient":"tom24@example.com","movieName":"Race3"}
+[2025-04-18T05:48:13.702Z] {"timestamp":"2025-04-18T05:48:13.702Z","level":"info","action":"EMAIL_SENT","recipient":"mike858@test.org","movieName":"Race3"}
+[2025-04-18T06:17:51.911Z] {"level":"info","action":"WORKER_STARTED","movieName":"Zaalimaa3"}
+[2025-04-18T06:17:56.395Z] {"level":"info","action":"EMAIL_SENT","recipient":"test@gmail.com","movieName":"Zaalimaa3"}
+[2025-04-18T06:18:00.546Z] {"level":"info","action":"EMAIL_SENT","recipient":"testt@gmail.com","movieName":"Zaalimaa3"}
