@@ -1,0 +1,2 @@
+[2025-04-17T10:12:27.702Z] {"level":"error","action":"EMAIL_BROADCAST_FAILED","error":"localStorage is not defined","timestamp":"2025-04-17T10:12:27.701Z"}
+[2025-04-17T10:12:39.507Z] {"level":"error","action":"EMAIL_BROADCAST_FAILED","error":"localStorage is not defined","timestamp":"2025-04-17T10:12:39.507Z"}

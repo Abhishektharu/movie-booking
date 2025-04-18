@@ -1,0 +1,11 @@
+[2025-04-18T05:40:37.244Z] {"timestamp":"2025-04-18T05:40:37.244Z","level":"info","action":"WORKER_STARTED","movieName":"ddsdf"}
+[2025-04-18T05:40:41.643Z] {"timestamp":"2025-04-18T05:40:41.643Z","level":"info","action":"EMAIL_SENT","recipient":"test@gmail.com","movieName":"ddsdf"}
+[2025-04-18T05:40:45.239Z] {"timestamp":"2025-04-18T05:40:45.239Z","level":"info","action":"EMAIL_SENT","recipient":"testt@gmail.com","movieName":"ddsdf"}
+[2025-04-18T05:40:49.454Z] {"timestamp":"2025-04-18T05:40:49.454Z","level":"info","action":"EMAIL_SENT","recipient":"admin@admin","movieName":"ddsdf"}
+[2025-04-18T05:40:53.606Z] {"timestamp":"2025-04-18T05:40:53.606Z","level":"info","action":"EMAIL_SENT","recipient":"admin@admin.com","movieName":"ddsdf"}
+[2025-04-18T05:40:57.856Z] {"timestamp":"2025-04-18T05:40:57.856Z","level":"info","action":"EMAIL_SENT","recipient":"noah236@example.com","movieName":"ddsdf"}
+[2025-04-18T05:41:02.051Z] {"timestamp":"2025-04-18T05:41:02.051Z","level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"ddsdf"}
+[2025-04-18T05:41:06.486Z] {"timestamp":"2025-04-18T05:41:06.486Z","level":"info","action":"EMAIL_SENT","recipient":"emma893@example.com","movieName":"ddsdf"}
+[2025-04-18T05:41:10.165Z] {"timestamp":"2025-04-18T05:41:10.165Z","level":"info","action":"EMAIL_SENT","recipient":"chris292@demo.net","movieName":"ddsdf"}
+[2025-04-18T05:41:21.537Z] {"timestamp":"2025-04-18T05:41:21.537Z","level":"info","action":"EMAIL_SENT","recipient":"chris670@example.com","movieName":"ddsdf"}
+[2025-04-18T05:41:25.729Z] {"timestamp":"2025-04-18T05:41:25.729Z","level":"info","action":"EMAIL_SENT","recipient":"emma89@test.org","movieName":"ddsdf"}

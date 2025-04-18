@@ -12,8 +12,10 @@ const sendEmailsToSubscribers = async (movieName) => {
     const [subscribers] = await db.query(query);
 
     if (subscribers.length === 0) {
-      console.log("No subscribers found.");
-      parentPort.postMessage({ message: "No subscribers found" });
+      parentPort.postMessage({ 
+        type: 'info',
+        message: 'No subscribers found'
+      });
       return;
     }
 
@@ -30,14 +32,30 @@ const sendEmailsToSubscribers = async (movieName) => {
     // Send emails to all subscribers
     for (const subscriber of subscribers) {
       try {
+        const startTime = new Date();
         await transporter.sendMail({
           from: '"Movie Booking" <noreply@moviebooking.com>',
           to: subscriber.email,
           subject: `New Movie Alert: ${movieName}`,
           html: `<h1>New Movie Released: ${movieName}</h1><p>Check out the latest movie now available in theaters!</p>`,
         });
+
+        parentPort.postMessage({ 
+          type: 'emailSent',
+          email: subscriber.email,
+          movieName,
+          sentAt: startTime,
+          deliveredAt: new Date()
+        });
         console.log(`Email sent to ${subscriber.email}`);
       } catch (error) {
+        parentPort.postMessage({ 
+          type: 'emailError',
+          email: subscriber.email,
+          movieName,
+          error: error.message,
+          attemptedAt: new Date()
+        });
         console.error(`Failed to send email to ${subscriber.email}:`, error);
       }
     }
@@ -46,8 +64,12 @@ const sendEmailsToSubscribers = async (movieName) => {
       message: "Emails sent successfully to all subscribers",
     });
   } catch (error) {
+    parentPort.postMessage({ 
+      type: 'error',
+      error: error.message,
+      occurredAt: new Date()
+    });
     console.error("Error sending emails:", error);
-    parentPort.postMessage({ error: error.message });
   }
 };
 

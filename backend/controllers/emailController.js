@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { Worker } from "worker_threads";
 import path from "path";
+import { emailLogger } from '../utils/logger.js';
 
 dotenv.config();
 
@@ -53,19 +54,50 @@ export const startEmailWorker = (movieName) => {
   worker.postMessage({ movieName });
 
   worker.on("message", (message) => {
+    if (message.type === 'emailSent') {
+      emailLogger.info({
+        action: 'EMAIL_SENT',
+        recipient: message.email,
+        movieName: message.movieName,
+      });
+    } else if (message.type === 'emailError') {
+      emailLogger.error({
+        action: 'EMAIL_FAILED',
+        recipient: message.email,
+        movieName: message.movieName,
+        error: message.error
+      });
+    }
     console.log("Worker message:", message);
   });
 
   worker.on("error", (error) => {
+    emailLogger.error({
+      action: 'WORKER_ERROR',
+      movieName,
+      error: error.message
+    });
     console.error("Worker error:", error);
   });
 
   worker.on("exit", (code) => {
     if (code !== 0) {
-      console.error(`Worker stopped with exit code ${code}`);
+      emailLogger.error({
+        action: 'WORKER_EXIT_ERROR',
+        movieName,
+        exitCode: code
+      });
     } else {
-      console.log("Worker exited successfully");
+      emailLogger.info({
+        action: 'WORKER_COMPLETED',
+        movieName
+      });
     }
+  });
+
+  emailLogger.info({
+    action: 'WORKER_STARTED',
+    movieName
   });
 
   console.log("Email worker started");
