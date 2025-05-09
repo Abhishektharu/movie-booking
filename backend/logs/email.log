@@ -34,3 +34,6 @@
 [2025-05-09T11:51:59.565Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"Zaalima"}
 [2025-05-09T11:52:03.753Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma893@example.com","movieName":"Zaalima"}
 [2025-05-09T11:52:08.083Z] {"level":"info","action":"EMAIL_SENT","recipient":"chris292@demo.net","movieName":"Zaalima"}
+[2025-05-09T17:00:00.350Z] {"level":"info","action":"WORKER_STARTED","movieName":"Batman"}
+[2025-05-09T17:00:06.228Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"Batman"}
+[2025-05-09T17:00:10.206Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma893@example.com","movieName":"Batman"}

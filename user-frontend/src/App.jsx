@@ -11,6 +11,8 @@ import Layout from './components/Layout/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
 import HomePage from '../src/pages/Homepage';
 import AllMovies from './components/AllMovies';
+import Checkout from './pages/Checkout/Checkout';
+import BookingConfirmation from './pages/BookingConfirmation/BookingConfirmation';
 
 function App() {
   return (
@@ -34,7 +36,8 @@ function App() {
 
 
             <Route path='/user/all-movies' element={<AllMovies />} />
-
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/booking-confirmation" element={<BookingConfirmation />} />
             
         </Route>
       </Route>
