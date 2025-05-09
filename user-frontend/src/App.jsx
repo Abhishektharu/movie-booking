@@ -9,6 +9,8 @@ import SeatSelectionPage from './pages/SeatSelection/SeatSelection';
 import UserDashboard from './Dashboard/UserDashboard';
 import Layout from './components/Layout/Layout';
 import ProtectedRoute from './components/ProtectedRoute';
+import HomePage from '../src/pages/Homepage';
+import AllMovies from './components/AllMovies';
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
       {/* Public Routes */}
       <Route path="/user/login" element={<Login />} />
       <Route path="/user/register" element={<Register />} />
+      <Route path="/home" element={<HomePage />} />
       
       {/* Protected Admin Routes */}
       <Route element={<ProtectedRoute allowedRoles={['user']} />}>
@@ -27,6 +30,12 @@ function App() {
           <Route path="/user/dashboard" element={<UserDashboard />} />
           <Route path='/seat-selection/:showtimeId' element={<SeatSelectionPage />} />
           
+
+
+
+            <Route path='/user/all-movies' element={<AllMovies />} />
+
+            
         </Route>
       </Route>
     </Routes>

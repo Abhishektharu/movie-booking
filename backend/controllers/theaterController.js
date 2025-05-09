@@ -16,13 +16,13 @@ export const addTheater = async (req, res) => {
         const theaterName = await db.execute(
             "select * from theaters where name = ?" , [name]
         )
-        if (theaterName.length > 0) {
-            return res.status(400).json({message: "Theater already exists."})
-        }
+        // if (theaterName.length > 0) {
+        //     return res.status(400).json({message: "Theater already exists."})
+        // }
 
         // Insert the theater into the database
         await db.execute(
-            "INSERT INTO theaters (name, location, total_screens) VALUES (?, ?, ?)",
+            "INSERT INTO theaters (name, location, total_seats) VALUES (?, ?, ?)",
             [name, location, total_screens]
         );
 

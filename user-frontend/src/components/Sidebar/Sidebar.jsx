@@ -87,18 +87,18 @@ const Sidebar = () => {
             {/* Submenu for Movies */}
             {moviesOpen && !collapsed && (
               <ul className="ml-6 space-y-2">
-                <SidebarSubItem icon={<FiList />} text="All Movies" path="/admin/all-movies" />
-                <SidebarSubItem icon={<FiPlusCircle />} text="Add Movie" path="/admin/movies/add" />
+                <SidebarSubItem icon={<FiList />} text="All Movies" path="/user/all-movies" />
+                {/* <SidebarSubItem icon={<FiPlusCircle />} text="Add Movie" path="/admin/movies/add" /> */}
               </ul>
             )}
           </li>
 
-          <SidebarItem 
+          {/* <SidebarItem 
             icon={<FiUsers className="text-gray-300" />} 
             text="Users" 
             collapsed={collapsed} 
             path="/admin/users" 
-          />
+          /> */}
           
           {/* <SidebarItem 
             icon={<FiSettings className="text-gray-300" />} 
@@ -107,7 +107,7 @@ const Sidebar = () => {
             path="/admin/settings" 
           /> */}
           
-          <SidebarItem 
+          {/* <SidebarItem 
             icon={<FiClock className="text-gray-300" />} 
             text="Shows" 
             collapsed={collapsed} 
@@ -126,7 +126,7 @@ const Sidebar = () => {
             text="Send Email" 
             collapsed={collapsed} 
             path="/admin/send-email" 
-          />
+          /> */}
         </ul>
       </nav>
 

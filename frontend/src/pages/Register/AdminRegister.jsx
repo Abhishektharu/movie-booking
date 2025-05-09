@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
 
 const AdminRegister = () => {
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const {
     register,
     handleSubmit,
@@ -10,9 +15,20 @@ const AdminRegister = () => {
 
   const onSubmit = async (data) => {
     try {
+      setError("");
+      setSuccess("");
+      
       const res = await axios.post("http://localhost:5000/api/auth/admin/register", data);
-      console.log("Registration successful:", res.data);
+      
+      setSuccess("Registration successful! Redirecting to login...");
+      
+      // Redirect to login page after 2 seconds
+      setTimeout(() => {
+        navigate("/admin/login");
+      }, 2000);
+      
     } catch (error) {
+      setError(error.response?.data?.message || "Registration failed");
       console.error("Registration failed:", error.response?.data || error.message);
     }
   };
@@ -21,6 +37,18 @@ const AdminRegister = () => {
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600">
       <div className="bg-white shadow-lg rounded-2xl p-8 max-w-md w-full">
         <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">Admin Register</h2>
+
+        {/* Success and Error Messages */}
+        {success && (
+          <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg">
+            {success}
+          </div>
+        )}
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg">
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           {/* Name Input */}
