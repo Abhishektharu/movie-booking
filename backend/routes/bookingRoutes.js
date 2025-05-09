@@ -3,7 +3,7 @@ import { bookTicket, getUserBookings, getAllBookings ,getBookingDetails,createBo
 
 const router = express.Router();
 
-// router.get("/getAllBookings", getAllBookings); // Assuming this is a placeholder for admin to get all bookings
+router.get("/getAllBookings", getAllBookings); // Assuming this is a placeholder for admin to get all bookings
 // router.post("/", bookTicket);
 // router.get("/:userId", getUserBookings);
 

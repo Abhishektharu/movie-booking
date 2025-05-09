@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import MovieList from "../components/List/MovieList";
 import Footer from "../components/Footer/Footer";
 import ModernCarousel from "../components/carousel/Carousel";
-import posterImage from "../assets/poster.jpeg";
+import posterImage from "../assets/poster.jpg";
 import posterImage2 from "../assets/poster2.png";
-import posterImage3 from "../assets/poster3.jpeg";
+import posterImage3 from "../assets/poster3.jpg";
 import Newsletter from "../components/Newsletter/Newsletter";
 
 

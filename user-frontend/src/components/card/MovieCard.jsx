@@ -1,12 +1,12 @@
-
+import React from "react";
 import { Link } from 'react-router-dom';
 import {getImageUrl} from "../../utils/api.js"
-const MovieCard = ({movies}) => {
+const MovieCard = ({movie}) => {
   // console.log(movies);
   return (
     
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {movies.map(movie => (
+        {movie.map(movie => (
           <div key={movie.id} className="bg-black text-white rounded shadow p-4">
             {/* <img src={movie.image_url} alt={movie.title} className="w-full h-48 object-cover rounded" /> */}
             <img 

@@ -51,15 +51,7 @@ export const getUserBookings = async (req, res) => {
 
 export const getAllBookings = async (req, res) => {
   try {
-    const query = `
-      SELECT b.*, u.name as user_name, u.email as user_email, s.show_date, s.show_time, m.title as movie_title, t.name as theater_name, st.seat_number
-      FROM bookings b
-      JOIN users u ON b.user_id = u.id
-      JOIN showtimes s ON b.showtime_id = s.id
-      JOIN movies m ON s.movie_id = m.id
-      JOIN theaters t ON s.theater_id = t.id
-      JOIN seats st ON b.seat_id = st.id
-      ORDER BY b.created_at DESC
+    const query = `select * from bookings 
     `;
     const [rows] = await db.execute(query);
     return res.status(200).json(rows);
