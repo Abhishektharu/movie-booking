@@ -34,18 +34,44 @@ export const addShowtime = async (req, res) => {
   try {
     const { movie_id, theater_id, show_date, show_time, price } = req.body;
 
-    if (!movie_id || !theater_id || !show_date || !show_time || !price) {
-      return res.status(400).json({ error: "All fields are required" });
-    }
-
-    await db.execute(
+    // 1. Insert the new showtime
+    const [showtimeResult] = await db.execute(
       "INSERT INTO showtimes (movie_id, theater_id, show_date, show_time, price) VALUES (?, ?, ?, ?, ?)",
       [movie_id, theater_id, show_date, show_time, price]
     );
+    const showtimeId = showtimeResult.insertId;
 
-    res.status(201).json({ message: "Showtime added successfully" });
+    // 2. Get total seats for the theater
+    const [theaterRows] = await db.execute(
+      "SELECT total_seats FROM theaters WHERE id = ?",
+      [theater_id]
+    );
+    const totalSeats = theaterRows[0].total_seats;
+
+    // 3. Generate seat numbers (e.g., A1, A2, ..., B1, B2, ...)
+    const seatsPerRow = 10;
+    const seatRows = Math.ceil(totalSeats / seatsPerRow);
+    const seatInserts = [];
+    for (let row = 0; row < seatRows; row++) {
+      const rowLetter = String.fromCharCode(65 + row); // 'A', 'B', ...
+      for (let num = 1; num <= seatsPerRow; num++) {
+        const seatNumber = `${rowLetter}${num}`;
+        if (seatInserts.length < totalSeats) {
+          seatInserts.push([showtimeId, seatNumber, 'available']);
+        }
+      }
+    }
+
+    // 4. Bulk insert seats
+    await db.query(
+      "INSERT INTO seats (showtime_id, seat_number, status) VALUES ?",
+      [seatInserts]
+    );
+
+    res.status(201).json({ message: "Showtime and seats created successfully", showtimeId });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error(error);
+    res.status(500).json({ message: "Failed to create showtime and seats" });
   }
 };
 
@@ -82,4 +108,5 @@ export const getShowtimeDetails = async (req, res) => {
   } catch (error) {
     console.error('Error fetching showtime details:', error);
     res.status(500).json({ message: 'Failed to fetch showtime details' });
-  }};
+  }
+};
