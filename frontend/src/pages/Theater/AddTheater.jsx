@@ -77,7 +77,7 @@ const AddTheater = () => {
           </div>
 
           <div>
-            <label className="block text-gray-700 font-medium">Total Screens</label>
+            <label className="block text-gray-700 font-medium">Total Seats</label>
             <input
               type="number"
               {...register("total_screens", {
@@ -85,7 +85,7 @@ const AddTheater = () => {
                 min: { value: 1, message: "Must have at least 1 screen" },
               })}
               className="w-full mt-1 p-3 border rounded-lg focus:ring-2 focus:ring-blue-400"
-              placeholder="Total screens"
+              placeholder="Total seats"
             />
             {errors.total_screens && <p className="text-red-500 text-sm">{errors.total_screens.message}</p>}
           </div>

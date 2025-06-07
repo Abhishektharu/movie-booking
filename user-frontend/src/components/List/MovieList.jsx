@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import useMovies from "../../hooks/useMovies";
 import MovieCard from "../card/MovieCard";
 import usePagination from "../../hooks/usePagination";
+import MyCard from "../card/MyCard";
 
 const MovieList = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const moviesPerPage = 10;
+  const moviesPerPage = 4;
   const { movies, loading, pagination } = usePagination(currentPage, moviesPerPage);
 
   const paginate = (pageNumber) => {
@@ -57,9 +58,9 @@ const MovieList = () => {
       <h2 className="text-3xl font-bold text-white text-center">Now Showing</h2>
 
       {/* Movie Grid */}
-      <div className="flex flex-wrap justify-center gap-6 mt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 justify-center">
         {movies.length > 0 ? (
-          movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+          movies.map((movie) => <MyCard key={movie.id} movie={[movie]} />)
         ) : (
           <p className="text-white">No movies available.</p>
         )}

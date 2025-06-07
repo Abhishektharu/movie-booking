@@ -38,3 +38,35 @@
 [2025-05-09T17:00:06.228Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"Batman"}
 [2025-05-09T17:00:10.206Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma893@example.com","movieName":"Batman"}
 [2025-05-09T17:50:22.128Z] {"level":"info","action":"WORKER_STARTED","movieName":"Zaalima"}
+[2025-05-12T14:19:53.112Z] {"level":"info","action":"WORKER_STARTED","movieName":"Batman"}
+[2025-05-12T14:20:04.910Z] {"level":"info","action":"EMAIL_SENT","recipient":"noah236@example.com","movieName":"Batman"}
+[2025-05-12T14:20:09.737Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"Batman"}
+[2025-05-12T15:14:09.494Z] {"level":"info","action":"WORKER_STARTED","movieName":"Lord of the rings"}
+[2025-05-12T15:14:14.549Z] {"level":"info","action":"EMAIL_SENT","recipient":"noah236@example.com","movieName":"Lord of the rings"}
+[2025-05-13T03:58:02.424Z] {"level":"info","action":"WORKER_STARTED","movieName":"Stranger Things"}
+[2025-05-13T03:58:08.084Z] {"level":"info","action":"EMAIL_SENT","recipient":"noah236@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:58:12.353Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma713@mail.com","movieName":"Stranger Things"}
+[2025-05-13T03:58:16.625Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma893@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:58:20.720Z] {"level":"info","action":"EMAIL_SENT","recipient":"chris292@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:58:24.816Z] {"level":"info","action":"EMAIL_SENT","recipient":"tom24@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:58:28.787Z] {"level":"info","action":"EMAIL_SENT","recipient":"mike858@test.org","movieName":"Stranger Things"}
+[2025-05-13T03:58:32.805Z] {"level":"info","action":"EMAIL_SENT","recipient":"chris670@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:58:36.695Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma89@test.org","movieName":"Stranger Things"}
+[2025-05-13T03:58:40.892Z] {"level":"info","action":"EMAIL_SENT","recipient":"jane185@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:58:45.199Z] {"level":"info","action":"EMAIL_SENT","recipient":"sara684@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:58:49.273Z] {"level":"info","action":"EMAIL_SENT","recipient":"alex712@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:58:53.079Z] {"level":"info","action":"EMAIL_SENT","recipient":"john878@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:58:57.073Z] {"level":"info","action":"EMAIL_SENT","recipient":"mike995@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:59:01.476Z] {"level":"info","action":"EMAIL_SENT","recipient":"tom605@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:59:05.776Z] {"level":"info","action":"EMAIL_SENT","recipient":"mike424@test.org","movieName":"Stranger Things"}
+[2025-05-13T03:59:09.888Z] {"level":"info","action":"EMAIL_SENT","recipient":"jane529@test.org","movieName":"Stranger Things"}
+[2025-05-13T03:59:13.969Z] {"level":"info","action":"EMAIL_SENT","recipient":"mike616@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:59:17.595Z] {"level":"info","action":"EMAIL_SENT","recipient":"mike631@test.org","movieName":"Stranger Things"}
+[2025-05-13T03:59:21.546Z] {"level":"info","action":"EMAIL_SENT","recipient":"john34@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:59:25.554Z] {"level":"info","action":"EMAIL_SENT","recipient":"alex354@test.org","movieName":"Stranger Things"}
+[2025-05-13T03:59:29.803Z] {"level":"info","action":"EMAIL_SENT","recipient":"sara102@example.com","movieName":"Stranger Things"}
+[2025-05-13T03:59:33.530Z] {"level":"info","action":"EMAIL_SENT","recipient":"emma631@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:59:37.521Z] {"level":"info","action":"EMAIL_SENT","recipient":"noah527@demo.net","movieName":"Stranger Things"}
+[2025-05-13T03:59:41.574Z] {"level":"info","action":"EMAIL_SENT","recipient":"jane309@mail.com","movieName":"Stranger Things"}
+[2025-05-13T04:15:41.779Z] {"level":"info","action":"WORKER_STARTED","movieName":"Darshan"}
+[2025-05-13T04:15:47.053Z] {"level":"info","action":"EMAIL_SENT","recipient":"noah236@example.com","movieName":"Darshan"}
